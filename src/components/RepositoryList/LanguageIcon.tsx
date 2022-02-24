@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styled, { useTheme } from "styled-components";
-import { IThemeType } from "components/GlobalStyle";
+import { IThemeType } from "globalStyle";
 import colors from "github-colors";
 
 const CircleSpan = styled.span`

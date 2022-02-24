@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useTheme } from "styled-components";
-import { IThemeType } from "components/GlobalStyle";
+
+import { IThemeType } from "globalStyle";
 
 import ContentLoader from "react-content-loader";
 import { Card } from "components/RepositoryList";

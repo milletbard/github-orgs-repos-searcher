@@ -2,7 +2,6 @@ import { FC } from "react";
 import styled, { useTheme } from "styled-components";
 import { GoStar } from "react-icons/go";
 import { LanguageIcon } from "./LanguageIcon";
-import { IThemeType } from "components/GlobalStyle";
 
 const numberFormatter = new Intl.NumberFormat("en", { notation: "compact" });
 

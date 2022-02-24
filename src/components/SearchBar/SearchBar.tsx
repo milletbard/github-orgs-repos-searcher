@@ -25,12 +25,13 @@ const StyleInput = styled.input`
 
 interface ISearchBarProps {
 	placeholder: string;
+	onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-const SearchBar: FC<ISearchBarProps> = ({ placeholder }) => {
+const SearchBar: FC<ISearchBarProps> = ({ placeholder, onChange }) => {
 	return (
 		<SearchBarWrapper>
-			<StyleInput placeholder={placeholder} />
+			<StyleInput placeholder={placeholder} onChange={onChange} />
 		</SearchBarWrapper>
 	);
 };

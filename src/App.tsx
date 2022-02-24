@@ -2,7 +2,9 @@ import { FC } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider, ThemeConsumer } from "styled-components";
-import { GlobalStyle, darkTheme } from "components/GlobalStyle";
+import { GlobalStyle, darkTheme } from "globalStyle";
+import "react-dropdown/style.css";
+
 import { Home } from "pages";
 
 axios.defaults.baseURL = `https://api.github.com`;

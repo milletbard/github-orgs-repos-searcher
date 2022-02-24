@@ -20,6 +20,29 @@ const GlobalStyle = createGlobalStyle`
   * {
   box-sizing: border-box;
   }
+
+  .Dropdown-root {
+    width: 120px;
+    margin: 0px 4px 0px 4px; 
+  }
+
+  .Dropdown-control {
+    color: white;
+    background-color: ${props => props.theme.colorDark50};
+    border: 1px solid #21262C;
+  }
+
+  .Dropdown-menu {
+    border: 1px solid ${props => props.theme.colorDark50};
+  }
+  
+  .Dropdown-option, .Dropdown-option:hover, .Dropdown-option.is-selected {
+    color: white;
+    background-color: ${props => props.theme.colorDark50};
+  }
+
+
+ 
 `;
 
 export { GlobalStyle };
