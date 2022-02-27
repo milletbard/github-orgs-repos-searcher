@@ -2,7 +2,7 @@ import { fetchGithubOrgRepos } from "api";
 import useSWRInfinite from "swr/infinite";
 import { Repositories } from "types";
 
-const PAGE_SIZE = 50;
+const PAGE_SIZE = 6;
 
 export interface GithubOrgReposFetcherProps {
 	org: string;
