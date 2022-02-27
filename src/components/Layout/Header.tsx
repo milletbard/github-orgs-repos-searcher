@@ -5,7 +5,7 @@ import {
 	useLayoutEffect,
 	useState
 } from "react";
-import { useDebounce } from "hooks";
+import { useDebounce, useHasMounted } from "hooks";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -30,6 +30,7 @@ const HeaderContent = styled.div`
 const Header: FC = () => {
 	const navigate = useNavigate();
 	const { org = "" } = useParams();
+	const hasMounted = useHasMounted();
 
 	const [searchValue, setSearchValue] = useState(org);
 	const debouncedSearchValue = useDebounce(searchValue, 800);
@@ -53,6 +54,9 @@ const Header: FC = () => {
 			<HeaderWrapper>
 				<HeaderContent>
 					<SearchBar
+						placeholder={
+							!hasMounted.current ? "First search here..." : undefined
+						}
 						value={searchValue}
 						onChange={handleInputChange}
 						onKeyUp={handleInputKeyUp}
