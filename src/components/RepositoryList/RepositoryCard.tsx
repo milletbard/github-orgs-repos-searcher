@@ -1,7 +1,8 @@
 import { FC } from "react";
-import styled, { useTheme } from "styled-components";
+import styled from "styled-components";
 import { GoStar } from "react-icons/go";
 import { LanguageIcon } from "./LanguageIcon";
+import { Repositories } from "types";
 
 const numberFormatter = new Intl.NumberFormat("en", { notation: "compact" });
 
@@ -70,35 +71,40 @@ const CardDetailItem = styled.span`
 	margin-right: 16px;
 `;
 
-const RepositoryCard: FC = () => {
+interface RepositoryCardProps {
+	repository: Repositories;
+}
+
+const RepositoryCard: FC<RepositoryCardProps> = ({ repository }) => {
 	return (
 		<Card>
 			<div>
 				<div>
-					<CardTitle href="href" target="_blank">
-						CardTitle
+					<CardTitle href={repository.html_url} target="_blank">
+						{repository.name}
 					</CardTitle>
-					<CardTagSpan>public</CardTagSpan>
+					<CardTagSpan>{repository.visibility}</CardTagSpan>
 				</div>
 
-				<CardDescription>CardDescription</CardDescription>
+				<CardDescription>{repository.description}</CardDescription>
 
 				<CardDescription>
-					<CardTagSpan>tag</CardTagSpan>
-					<CardTagSpan>tag</CardTagSpan>
-					<CardTagSpan>tag</CardTagSpan>
+					{repository.topics?.map((topic, index) => (
+						<CardTagSpan key={String(index)}>{topic}</CardTagSpan>
+					))}
 				</CardDescription>
 
 				<CardDetail>
 					<CardDetailItem>
-						<LanguageIcon />
-						TypeScript
+						<LanguageIcon language={repository?.language} />
+
+						{repository.language}
 					</CardDetailItem>
 
 					<CardDetailItem>
 						<GoStar style={{ marginRight: "4px" }} />
 
-						{numberFormatter.format(1500)}
+						{numberFormatter.format(repository.watchers_count)}
 					</CardDetailItem>
 				</CardDetail>
 			</div>

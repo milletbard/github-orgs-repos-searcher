@@ -1,6 +1,15 @@
-import React, { FC } from "react";
+import {
+	ChangeEvent,
+	FC,
+	KeyboardEvent,
+	useLayoutEffect,
+	useState
+} from "react";
+import { useDebounce } from "hooks";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
+import { SearchBar } from "components/SearchBar";
 import { HeaderGithubIcon } from "./HeaderGithubIcon";
 
 const HeaderWrapper = styled.div`
@@ -17,17 +26,42 @@ const HeaderContent = styled.div`
 	width: 100%;
 	max-width: 768px;
 `;
-interface IHeaderProps {
-	children: React.ReactNode;
-}
 
-const Header: FC<IHeaderProps> = ({ children }) => {
+const Header: FC = () => {
+	const navigate = useNavigate();
+	const { org = "" } = useParams();
+
+	const [searchValue, setSearchValue] = useState(org);
+	const debouncedSearchValue = useDebounce(searchValue, 800);
+
+	const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+		setSearchValue(event.target.value);
+	};
+
+	const handleInputKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
+		if (event.key === "Enter") {
+			window.location.reload();
+		}
+	};
+
+	useLayoutEffect(() => {
+		navigate(`/github-orgs-repo-searcher/${debouncedSearchValue}`);
+	}, [debouncedSearchValue, navigate]);
+
 	return (
-		<HeaderWrapper>
-			<HeaderContent>{children}</HeaderContent>
+		<>
+			<HeaderWrapper>
+				<HeaderContent>
+					<SearchBar
+						value={searchValue}
+						onChange={handleInputChange}
+						onKeyUp={handleInputKeyUp}
+					/>
+				</HeaderContent>
 
-			<HeaderGithubIcon />
-		</HeaderWrapper>
+				<HeaderGithubIcon />
+			</HeaderWrapper>
+		</>
 	);
 };
 

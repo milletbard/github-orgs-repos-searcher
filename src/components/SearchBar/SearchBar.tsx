@@ -23,15 +23,27 @@ const StyleInput = styled.input`
 	}
 `;
 
-interface ISearchBarProps {
-	placeholder: string;
-	onChange: React.ChangeEventHandler<HTMLInputElement>;
+interface SearchBarProps {
+	placeholder?: string;
+	value?: string | undefined;
+	onChange?: React.ChangeEventHandler<HTMLInputElement>;
+	onKeyUp?: React.KeyboardEventHandler<HTMLInputElement>;
 }
 
-const SearchBar: FC<ISearchBarProps> = ({ placeholder, onChange }) => {
+const SearchBar: FC<SearchBarProps> = ({
+	placeholder = "Search",
+	value = "",
+	onKeyUp,
+	onChange
+}) => {
 	return (
 		<SearchBarWrapper>
-			<StyleInput placeholder={placeholder} onChange={onChange} />
+			<StyleInput
+				value={value}
+				placeholder={placeholder}
+				onKeyUp={onKeyUp}
+				onChange={onChange}
+			/>
 		</SearchBarWrapper>
 	);
 };

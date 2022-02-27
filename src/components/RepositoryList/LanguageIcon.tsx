@@ -13,9 +13,12 @@ const CircleSpan = styled.span`
 	margin-right: 4px;
 `;
 
-const LanguageIcon: FC = () => {
+interface LanguageIconProps {
+	language: null | string;
+}
+const LanguageIcon: FC<LanguageIconProps> = ({ language }) => {
 	const theme: IThemeType = useTheme();
-	const { color = theme.colorDark20 } = colors.get("TypeScript") ?? {};
+	const { color = theme.colorDark20 } = colors.get(language ?? "") ?? {};
 
 	return <CircleSpan style={{ backgroundColor: color }} />;
 };

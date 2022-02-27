@@ -1,18 +1,3 @@
-export interface FetchGithubOrgReposProps {
-	org: string;
-	sort?: "created" | "updated" | "pushed" | "full_name";
-	type?:
-		| "all"
-		| "public"
-		| "private"
-		| "forks"
-		| "sources"
-		| "member"
-		| "internal";
-	direction?: "asc" | "desc";
-	page?: number;
-}
-
 export type Repositories = {
 	id: number;
 	name: string;
@@ -31,5 +16,6 @@ export type Repositories = {
 	};
 	topics: null | string[];
 	visibility: string;
+	watchers_count: number;
 	forks: number;
 };
