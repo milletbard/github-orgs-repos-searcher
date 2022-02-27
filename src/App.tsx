@@ -3,9 +3,8 @@ import axios from "axios";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider, ThemeConsumer } from "styled-components";
 import { GlobalStyle, darkTheme } from "globalStyle";
-import "react-dropdown/style.css";
 
-import { Layout } from "components";
+import { Empty, Layout } from "components";
 import { Home } from "pages";
 import "react-dropdown/style.css";
 
@@ -26,7 +25,7 @@ const App: FC = () => {
 								element={<Home />}
 							/>
 
-						<Route path="/github-orgs-repo-searcher" element={<Home />} />
+							<Route path="/github-orgs-repo-searcher" element={<Empty />} />
 						</Route>
 					</Routes>
 				</Router>

@@ -48,8 +48,12 @@ const Home: FC = () => {
 	const {
 		repositoryList,
 		isLoadingMore,
+		isValidating,
+		isEmpty,
+		isReachingEnd,
 		error,
 		loadMore,
+		revalidate
 	} = useGithubOrgReposFetcher({
 		org,
 		sort,
@@ -69,6 +73,11 @@ const Home: FC = () => {
 		}
 	};
 
+	const handleRevalidate = () => {
+		if (!isValidating) {
+			revalidate();
+		}
+	};
 
 	return (
 		<>
@@ -108,6 +117,17 @@ const Home: FC = () => {
 				/>
 			)}
 
+			{!isReachingEnd && isLoadingMore && !error && <Skeletons />}
+
+			{(isEmpty || error) && <Empty error={error} />}
+
+			{isReachingEnd && (
+				<RepositoryRevalidateButton
+					onClick={handleRevalidate}
+					loading={isValidating}>
+					Is reaching end, click me to revalidate.
+				</RepositoryRevalidateButton>
+			)}
 		</>
 	);
 };
