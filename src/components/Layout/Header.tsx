@@ -46,7 +46,7 @@ const Header: FC = () => {
 	};
 
 	useLayoutEffect(() => {
-		navigate(`/github-orgs-repo-searcher/${debouncedSearchValue}`);
+		navigate(`/${debouncedSearchValue}`);
 	}, [debouncedSearchValue, navigate]);
 
 	return (
