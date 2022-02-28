@@ -1,10 +1,4 @@
-import {
-	ChangeEvent,
-	FC,
-	KeyboardEvent,
-	useLayoutEffect,
-	useState
-} from "react";
+import { ChangeEvent, FC, useLayoutEffect, useState } from "react";
 import { useDebounce, useHasMounted } from "hooks";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -39,12 +33,6 @@ const Header: FC = () => {
 		setSearchValue(event.target.value);
 	};
 
-	const handleInputKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
-		if (event.key === "Enter") {
-			window.location.reload();
-		}
-	};
-
 	useLayoutEffect(() => {
 		navigate(`/${debouncedSearchValue}`);
 	}, [debouncedSearchValue, navigate]);
@@ -59,7 +47,6 @@ const Header: FC = () => {
 						}
 						value={searchValue}
 						onChange={handleInputChange}
-						onKeyUp={handleInputKeyUp}
 					/>
 				</HeaderContent>
 

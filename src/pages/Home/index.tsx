@@ -11,12 +11,6 @@ import {
 	Skeletons
 } from "components";
 
-const Row = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-`;
-
 const FilterWrapper = styled.div`
 	display: flex;
 `;
@@ -81,34 +75,32 @@ const Home: FC = () => {
 
 	return (
 		<>
-			<Row>
-				<h2 style={{ fontWeight: "400", fontSize: "16px" }}>
-					List organization repositories
-				</h2>
+			<h2 style={{ fontWeight: "400", fontSize: "16px" }}>
+				List organization repositories
+			</h2>
 
-				<FilterWrapper>
-					<Dropdown
-						options={FILTER_TYPE}
-						value={type}
-						onChange={({ value }) => handleFilterChange({ type: value })}
-						placeholder="Type"
-					/>
+			<FilterWrapper>
+				<Dropdown
+					options={FILTER_TYPE}
+					value={type}
+					onChange={({ value }) => handleFilterChange({ type: value })}
+					placeholder="Type"
+				/>
 
-					<Dropdown
-						options={FILTER_SORT}
-						value={sort}
-						onChange={({ value }) => handleFilterChange({ sort: value })}
-						placeholder="Sort"
-					/>
+				<Dropdown
+					options={FILTER_SORT}
+					value={sort}
+					onChange={({ value }) => handleFilterChange({ sort: value })}
+					placeholder="Sort"
+				/>
 
-					<Dropdown
-						options={FILTER_DIRECTION}
-						value={direction}
-						onChange={({ value }) => handleFilterChange({ direction: value })}
-						placeholder="Direction"
-					/>
-				</FilterWrapper>
-			</Row>
+				<Dropdown
+					options={FILTER_DIRECTION}
+					value={direction}
+					onChange={({ value }) => handleFilterChange({ direction: value })}
+					placeholder="Direction"
+				/>
+			</FilterWrapper>
 
 			{!error && (
 				<RepositoryList
