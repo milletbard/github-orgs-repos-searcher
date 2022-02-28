@@ -7,7 +7,7 @@ const useHasMounted = (): MutableRefObject<boolean> => {
 		hasMounted.current = true;
 
 		return () => {
-			hasMounted.current = true;
+			hasMounted.current = false;
 		};
 	}, []);
 
