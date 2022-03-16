@@ -23,6 +23,8 @@ const App: FC = () => {
 						<Route path="/" element={<Layout />}>
 							<Route path={`:org`} element={<Home />} />
 						</Route>
+
+						<Route path="*" element={<Layout />} />
 					</Routes>
 				</Router>
 			</ThemeProvider>
