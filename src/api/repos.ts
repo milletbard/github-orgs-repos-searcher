@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASE_URL } from "def";
 import { GithubOrgReposFetcherProps } from "hooks";
 import { Repositories } from "types";
 
@@ -11,7 +12,7 @@ export const fetchGithubOrgRepos = async ({
 	page
 }: GithubOrgReposFetcherProps): Promise<Repositories[]> => {
 	const response = await axios
-		.get(`/orgs/${org}/repos`, {
+		.get(`${BASE_URL}/orgs/${org}/repos`, {
 			params: {
 				sort,
 				type,
